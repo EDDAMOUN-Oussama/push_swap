@@ -24,7 +24,7 @@ void	ft_swap(t_list **stack)
 		(*stack) = next;
 	}
 }
-void	ft_push(t_list **stack1, t_list **stack2)
+void	ft_push(t_list **stack2, t_list **stack1)
 {
 	t_list	*node;
 
@@ -33,21 +33,6 @@ void	ft_push(t_list **stack1, t_list **stack2)
 	{
 		*stack1 = (*stack1)->next;
 		ft_lstadd_front(stack2, node);
-	}
-}
-
-void	ft_rrotate(t_list **stack)
-{
-	t_list	*bef_last;
-
-	if ((*stack) && (*stack)->next)
-	{
-		bef_last = *stack;
-		while ((bef_last->next)->next)
-			bef_last = bef_last->next;
-		(bef_last->next)->next = *stack;
-		*stack = bef_last->next;
-		bef_last->next = NULL;
 	}
 }
 
@@ -66,7 +51,39 @@ void	ft_rotate(t_list **stack)
 	}
 }
 
-void	ft_move(t_list **stack1, t_list **stack2, char *str)
+void	ft_rrotate(t_list **stack)
 {
-	if ()
+	t_list	*bef_last;
+
+	if ((*stack) && (*stack)->next)
+	{
+		bef_last = *stack;
+		while ((bef_last->next)->next)
+			bef_last = bef_last->next;
+		(bef_last->next)->next = *stack;
+		*stack = bef_last->next;
+		bef_last->next = NULL;
+	}
+}
+
+void	ft_move(t_list **stack1, t_list **stack2, char *move)
+{
+	if (!ft_strncmp(move, "sa", 2) || !ft_strncmp(move, "ss", 2))
+		ft_swap(stack1);
+	if (!ft_strncmp(move, "sb", 2) || !ft_strncmp(move, "ss", 2))
+		ft_swap(stack2);
+	if (!ft_strncmp(move, "pa", 2))
+		ft_push(stack1, stack2);
+	if (!ft_strncmp(move, "pb", 2))
+		ft_push(stack2, stack1);
+	if (!ft_strncmp(move, "ra", 2) || !ft_strncmp(move, "rr", 2))
+		ft_swap(stack1);
+	if (!ft_strncmp(move, "rb", 2) || !ft_strncmp(move, "rr", 2))
+		ft_swap(stack2);
+	if (!ft_strncmp(move, "rra", 3) || !ft_strncmp(move, "rrr", 3))
+		ft_swap(stack1);
+	if (!ft_strncmp(move, "rrb", 2) || !ft_strncmp(move, "rrr", 3))
+		ft_swap(stack2);
+	ft_putstr_fd(move, 1);
+	ft_putstr_fd("\n", 1);
 }

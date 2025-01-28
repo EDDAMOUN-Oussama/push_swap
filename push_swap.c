@@ -13,12 +13,15 @@
 #include "push_swap.h"
 #include <stdio.h>
 
-
+void affiche(int a)
+{
+	printf("%d  ", a);
+}
 int	main(int ac, char **av)
 {
 	t_list	*stack_a;
-	t_list	*h;
 	t_list	*stack_b;
+	char mot[4] ={'\0'};
 
 	if (!ft_check_arg(ac, av))
 		return (0);
@@ -26,26 +29,23 @@ int	main(int ac, char **av)
 	if (!stack_a || !ft_non_repete(stack_a))
 		return (0);
 	stack_b = NULL;
-	h = stack_a;
-	while (h)
+	printf ("the stack a:\n");
+	ft_lstiter(stack_a, affiche);
+	while (ft_strncmp(mot, "f", 1))
 	{
-		printf("%d\n", h->content);
-		h = h->next;
-	}
-	ft_rotate(&stack_a);
-	printf("after the rrotate:\nstack a:\n");
-	h = stack_a;
-	while (h)
-	{
-		printf("%d\n", h->content);
-		h = h->next;
-	}
-	printf("stack b:\n");
-	h = stack_b;
-	while (h)
-	{
-		printf("%d\n", h->content);
-		h = h->next;
-	}
+		printf ("\n give me the move:  ");
+		scanf("%s", mot);
+		ft_move(&stack_a, &stack_b, mot);
+		if (stack_a)
+		{
+			printf ("the stack a:\n");
+			ft_lstiter(stack_a, affiche);
+		}
+		if (stack_b)
+		{
+			printf ("the stack b:\n");
+			ft_lstiter(stack_b, affiche);
+		}
+	}	
 	
 }

@@ -11,4 +11,7 @@ void	ft_swap(t_list **stack);
 void    ft_push(t_list **stack1, t_list **stack2);
 void	ft_rotate(t_list **stack);
 void    ft_rrotate(t_list **stack);
+void	ft_free(char ***str);
+void	ft_move(t_list **stack1, t_list **stack2, char *move);
+
 #endif

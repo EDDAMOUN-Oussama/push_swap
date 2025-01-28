@@ -23,7 +23,7 @@ int	ft_is_non_valide(char *str)
 		return (0);
 	while (str[i])
 	{
-		if ((str[i] < 9 || str[i] > 13) && str[i] != ' ')
+		if (str[i] != ' ')
 			c = 1;
 		i++;
 	}
@@ -37,6 +37,20 @@ int	ft_is_non_valide(char *str)
 				return (0);
 		i++;
 	}
+	return (1);
+}
+
+int	ft_zero(char *str, int j)
+{
+	int i;
+
+	i = j;
+	while (i && str[i] != ' ' && str[i]!= '-' && str[i] != '+')
+		{
+			if (str[i] != '0')
+				return (0);
+			i--;
+		}
 	return (1);
 }
 
@@ -60,6 +74,7 @@ int	ft_check_arg(int ac, char **av)
 			if (av[i][j] == ' ')
 				c = 0;
 			j++;
+			if (c != 0 || !ft_zero(av[i], j))
 			c++;
 		}
 		i++;
@@ -67,19 +82,6 @@ int	ft_check_arg(int ac, char **av)
 	return (1);
 }
 
-void	ft_free(char ***str)
-{
-	int	i;
-
-	i = 0;
-	while ((*str)[i])
-	{
-		free((*str)[i]);
-		i++;
-	}
-	free((*str));
-	(*str) = NULL;
-}
 
 t_list	*ft_to_lstnum(int ac, char **av)
 {
