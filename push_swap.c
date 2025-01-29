@@ -6,7 +6,7 @@
 /*   By: oeddamou <oeddamou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/26 16:07:34 by oeddamou          #+#    #+#             */
-/*   Updated: 2025/01/29 20:10:00 by oeddamou         ###   ########.fr       */
+/*   Updated: 2025/01/29 21:21:01 by oeddamou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,15 +21,19 @@ void	ft_sort(t_list **s_a, t_list **s_b)
 			ft_move(s_a, s_b, "pa");
 		else if ((*s_a)->content > (ft_lstlast(*s_a))->content)
 			ft_move(s_a, s_b, "ra");
-		else if ((ft_lstsize(*s_a) > 1) &&(*s_a)->content > ((*s_a)->next)->content)
+		else if ((ft_lstsize(*s_a) > 1)
+			&& (*s_a)->content > ((*s_a)->next)->content)
 			ft_move(s_a, s_b, "sa");
-		else if (!*s_b || (ft_lstsize(*s_a) > 1 && (*s_a)->content > (*s_b)->content))
+		else if (!*s_b || (ft_lstsize(*s_a) > 1
+				&& (*s_a)->content > (*s_b)->content))
 			ft_move(s_a, s_b, "pb");
-			else if (!ft_is_ascending(*s_b) && (*s_b)->content > ((*s_b)->next)->content)
-				ft_move(s_a, s_b, "sb");
-			else 
+		else if ((ft_lstsize(*s_b) > 1)
+			&& (*s_b)->content < ((*s_b)->next)->content)
+			ft_move(s_a, s_b, "sb");
+		else if ((*s_b)->content < (ft_lstlast(*s_b))->content)
+			ft_move(s_a, s_b, "rb");
+		else
 			ft_move(s_a, s_b, "pa");
-				
 	}
 }
 
