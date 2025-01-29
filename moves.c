@@ -6,7 +6,7 @@
 /*   By: oeddamou <oeddamou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 09:42:35 by oeddamou          #+#    #+#             */
-/*   Updated: 2025/01/27 16:11:27 by oeddamou         ###   ########.fr       */
+/*   Updated: 2025/01/29 10:49:49 by oeddamou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	ft_swap(t_list **stack)
 		(*stack) = next;
 	}
 }
-void	ft_push(t_list **stack2, t_list **stack1)
+void	ft_push(t_list **stack1, t_list **stack2)
 {
 	t_list	*node;
 
@@ -73,17 +73,17 @@ void	ft_move(t_list **stack1, t_list **stack2, char *move)
 	if (!ft_strncmp(move, "sb", 2) || !ft_strncmp(move, "ss", 2))
 		ft_swap(stack2);
 	if (!ft_strncmp(move, "pa", 2))
-		ft_push(stack1, stack2);
-	if (!ft_strncmp(move, "pb", 2))
 		ft_push(stack2, stack1);
+	if (!ft_strncmp(move, "pb", 2))
+		ft_push(stack1, stack2);
 	if (!ft_strncmp(move, "ra", 2) || !ft_strncmp(move, "rr", 2))
-		ft_swap(stack1);
+		ft_rotate(stack1);
 	if (!ft_strncmp(move, "rb", 2) || !ft_strncmp(move, "rr", 2))
-		ft_swap(stack2);
+		ft_rotate(stack2);
 	if (!ft_strncmp(move, "rra", 3) || !ft_strncmp(move, "rrr", 3))
-		ft_swap(stack1);
-	if (!ft_strncmp(move, "rrb", 2) || !ft_strncmp(move, "rrr", 3))
-		ft_swap(stack2);
+		ft_rrotate(stack1);
+	if (!ft_strncmp(move, "rrb", 3) || !ft_strncmp(move, "rrr", 3))
+		ft_rrotate(stack2);
 	ft_putstr_fd(move, 1);
 	ft_putstr_fd("\n", 1);
 }

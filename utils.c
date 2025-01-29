@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   utils.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: oeddamou <oeddamou@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/01/29 18:18:43 by oeddamou          #+#    #+#             */
+/*   Updated: 2025/01/29 18:19:45 by oeddamou         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 void	ft_free(char ***str)
@@ -13,3 +25,43 @@ void	ft_free(char ***str)
 	free((*str));
 	(*str) = NULL;
 }
+
+int	ft_is_sorted(t_list *s_a, t_list *s_b)
+{
+	if (s_b)
+		return (0);
+	while (s_a->next)
+	{
+		if ((s_a->next)->content <= s_a->content)
+		return (0);
+		s_a = s_a->next;
+	}
+	return (1);
+}
+
+int ft_is_ascending(t_list *s)
+{
+	if (!s)
+		return (0);
+	while (s->next)
+	{
+		if ((s->content) > (s->next)->content)
+			return (0);
+		s = s->next;
+	}
+	return (1);
+}
+
+int ft_is_deascending(t_list *s)
+{
+	if (!s)
+		return (0);	
+	while (s->next)
+	{
+		if ((s->content) < (s->next)->content)
+			return (0);
+		s = s->next;
+	}
+	return (1);
+}
+

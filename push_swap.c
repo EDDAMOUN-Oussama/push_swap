@@ -6,12 +6,32 @@
 /*   By: oeddamou <oeddamou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/26 16:07:34 by oeddamou          #+#    #+#             */
-/*   Updated: 2025/01/27 15:54:56 by oeddamou         ###   ########.fr       */
+/*   Updated: 2025/01/29 20:10:00 by oeddamou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 #include <stdio.h>
+
+void	ft_sort(t_list **s_a, t_list **s_b)
+{
+	while (!ft_is_sorted(*s_a, *s_b))
+	{
+		if (ft_is_ascending(*s_a) && ft_is_deascending(*s_b))
+			ft_move(s_a, s_b, "pa");
+		else if ((*s_a)->content > (ft_lstlast(*s_a))->content)
+			ft_move(s_a, s_b, "ra");
+		else if ((ft_lstsize(*s_a) > 1) &&(*s_a)->content > ((*s_a)->next)->content)
+			ft_move(s_a, s_b, "sa");
+		else if (!*s_b || (ft_lstsize(*s_a) > 1 && (*s_a)->content > (*s_b)->content))
+			ft_move(s_a, s_b, "pb");
+			else if (!ft_is_ascending(*s_b) && (*s_b)->content > ((*s_b)->next)->content)
+				ft_move(s_a, s_b, "sb");
+			else 
+			ft_move(s_a, s_b, "pa");
+				
+	}
+}
 
 void affiche(int a)
 {
@@ -21,7 +41,7 @@ int	main(int ac, char **av)
 {
 	t_list	*stack_a;
 	t_list	*stack_b;
-	char mot[4] ={'\0'};
+	// char mot[4] ={'\0'};
 
 	if (!ft_check_arg(ac, av))
 		return (0);
@@ -31,21 +51,25 @@ int	main(int ac, char **av)
 	stack_b = NULL;
 	printf ("the stack a:\n");
 	ft_lstiter(stack_a, affiche);
-	while (ft_strncmp(mot, "f", 1))
-	{
-		printf ("\n give me the move:  ");
-		scanf("%s", mot);
-		ft_move(&stack_a, &stack_b, mot);
-		if (stack_a)
-		{
-			printf ("the stack a:\n");
-			ft_lstiter(stack_a, affiche);
-		}
-		if (stack_b)
-		{
-			printf ("the stack b:\n");
-			ft_lstiter(stack_b, affiche);
-		}
-	}	
+	// while (ft_strncmp(mot, "f", 1))
+	// {
+	// 	printf ("\n--------------------------------------------\n give me the move:  ");
+	// 	scanf("%s", mot);
+	// 	ft_move(&stack_a, &stack_b, mot);
+	// 	if (stack_a)
+	// 	{
+	// 		printf ("the stack a:\n");
+	// 		ft_lstiter(stack_a, affiche);
+	// 	}
+	// 	if (stack_b)
+	// 	{
+	// 		printf ("the stack b:\n");
+	// 		ft_lstiter(stack_b, affiche);
+	// 	}
+	// }	
+	printf("\nthe movse:\n");
+	ft_sort(&stack_a, &stack_b);
+	printf ("the stack a:\n");
+	ft_lstiter(stack_a, affiche);
 	
 }

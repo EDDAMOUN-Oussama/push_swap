@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   push_swap.h                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: oeddamou <oeddamou@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/01/29 18:18:57 by oeddamou          #+#    #+#             */
+/*   Updated: 2025/01/29 18:18:58 by oeddamou         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
@@ -13,5 +25,8 @@ void	ft_rotate(t_list **stack);
 void    ft_rrotate(t_list **stack);
 void	ft_free(char ***str);
 void	ft_move(t_list **stack1, t_list **stack2, char *move);
+int	ft_is_sorted(t_list *s_a, t_list *s_b);
+int ft_is_ascending(t_list *s);
+int ft_is_deascending(t_list *s);
 
 #endif

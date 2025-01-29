@@ -6,7 +6,7 @@
 /*   By: oeddamou <oeddamou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/26 16:21:58 by oeddamou          #+#    #+#             */
-/*   Updated: 2025/01/27 20:44:29 by oeddamou         ###   ########.fr       */
+/*   Updated: 2025/01/29 13:39:28 by oeddamou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int	ft_is_non_valide(char *str)
 	while (str[i] && str[i + 1])
 	{
 		if (str[i] == '+' || str[i] == '-')
-			if (!ft_isdigit(str[i + 1]))
+			if (!ft_isdigit(str[i + 1]) || (i > 0 && str[i -1] != ' '))
 				return (0);
 		i++;
 	}
