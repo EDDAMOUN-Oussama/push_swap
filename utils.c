@@ -65,3 +65,35 @@ int ft_is_deascending(t_list *s)
 	return (1);
 }
 
+int ft_best(t_list *s_a)
+{
+	t_list	*t;
+
+	t = s_a;
+	if (t->next)
+	t = s_a->next;
+	while(t)
+	{
+		if (s_a->content > t->content)
+			s_a = t;
+		t = t->next;
+	}
+	return (t->content);
+}
+
+int	ft_find(t_list *s_a, int n)
+{
+	t_list *t;
+	int		i;
+
+	i = 0;
+	t = s_a;
+	while (t)
+	{
+		if (t->content == n)
+			return (i);
+		t = t->next;
+		i++;
+	}
+	return (-1);
+}

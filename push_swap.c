@@ -32,8 +32,15 @@ void	ft_sort(t_list **s_a, t_list **s_b)
 			ft_move(s_a, s_b, "sb");
 		else if ((*s_b)->content < (ft_lstlast(*s_b))->content)
 			ft_move(s_a, s_b, "rb");
+		else if ((*s_a)->content < (ft_lstlast(*s_b))->content)
+			{
+				ft_move(s_a, s_b, "pb");
+				ft_move(s_a, s_b, "rb");
+			}
+		else if (ft_find(*s_a, ft_best(*s_a)) <= ft_lstsize(*s_a) / 2)
+				ft_move(s_a, s_b, "ra");
 		else
-			ft_move(s_a, s_b, "pa");
+			ft_move(s_a, s_b, "rra");
 	}
 }
 
@@ -53,8 +60,8 @@ int	main(int ac, char **av)
 	if (!stack_a || !ft_non_repete(stack_a))
 		return (0);
 	stack_b = NULL;
-	printf ("the stack a:\n");
-	ft_lstiter(stack_a, affiche);
+	// printf ("the stack a:\n");
+	// ft_lstiter(stack_a, affiche);
 	// while (ft_strncmp(mot, "f", 1))
 	// {
 	// 	printf ("\n--------------------------------------------\n give me the move:  ");
@@ -71,9 +78,9 @@ int	main(int ac, char **av)
 	// 		ft_lstiter(stack_b, affiche);
 	// 	}
 	// }	
-	printf("\nthe movse:\n");
+	// printf("\nthe movse:\n");
 	ft_sort(&stack_a, &stack_b);
-	printf ("the stack a:\n");
-	ft_lstiter(stack_a, affiche);
+	// printf ("the stack a:\n");
+	// ft_lstiter(stack_a, affiche);
 	
 }

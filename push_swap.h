@@ -28,5 +28,7 @@ void	ft_move(t_list **stack1, t_list **stack2, char *move);
 int	ft_is_sorted(t_list *s_a, t_list *s_b);
 int ft_is_ascending(t_list *s);
 int ft_is_deascending(t_list *s);
+int ft_best(t_list *s_a);
+int	ft_find(t_list *s_a, int n);
 
 #endif
