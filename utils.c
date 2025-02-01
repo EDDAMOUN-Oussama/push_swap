@@ -70,15 +70,17 @@ int ft_best(t_list *s_a)
 	t_list	*t;
 
 	t = s_a;
-	if (t->next)
-	t = s_a->next;
-	while(t)
+	if (s_a)
 	{
-		if (s_a->content > t->content)
-			s_a = t;
-		t = t->next;
+		t = s_a->next;
+		while(t)
+		{
+			if (s_a->content > t->content)
+				s_a = t;
+			t = t->next;
+		}
 	}
-	return (t->content);
+	return (s_a->content);
 }
 
 int	ft_find(t_list *s_a, int n)

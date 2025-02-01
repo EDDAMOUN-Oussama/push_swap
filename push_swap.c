@@ -13,12 +13,28 @@
 #include "push_swap.h"
 #include <stdio.h>
 
+void affiche(int a)
+{
+	printf("%d  ", a);
+}
 void	ft_sort(t_list **s_a, t_list **s_b)
 {
 	while (!ft_is_sorted(*s_a, *s_b))
 	{
+		printf ("the stack a: ");
+		ft_lstiter(*s_a, affiche);
+		printf ("\nthe stack b: ");
+		ft_lstiter(*s_b, affiche);
+		printf ("\n---------------\n");
 		if (ft_is_ascending(*s_a) && ft_is_deascending(*s_b))
 			ft_move(s_a, s_b, "pa");
+		if (!ft_is_deascending(*s_b))
+		{
+			if ((ft_lstsize(*s_b) > 1)
+				&& (*s_b)->content > ((*s_b)->next)->content)
+				ft_move(s_a, s_b, "sb");
+
+		}
 		else if ((*s_a)->content > (ft_lstlast(*s_a))->content)
 			ft_move(s_a, s_b, "ra");
 		else if ((ft_lstsize(*s_a) > 1)
@@ -37,17 +53,16 @@ void	ft_sort(t_list **s_a, t_list **s_b)
 				ft_move(s_a, s_b, "pb");
 				ft_move(s_a, s_b, "rb");
 			}
-		else if (ft_find(*s_a, ft_best(*s_a)) <= ft_lstsize(*s_a) / 2)
+		else if (*s_a && (*s_a)->content == ft_best(*s_a))
+				ft_move(s_a, s_b, "pb");
+		else if (*s_a && ft_find(*s_a, ft_best(*s_a)) <= ft_lstsize(*s_a) / 2)
 				ft_move(s_a, s_b, "ra");
 		else
 			ft_move(s_a, s_b, "rra");
 	}
 }
 
-void affiche(int a)
-{
-	printf("%d  ", a);
-}
+
 int	main(int ac, char **av)
 {
 	t_list	*stack_a;
