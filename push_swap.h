@@ -6,7 +6,7 @@
 /*   By: oeddamou <oeddamou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 18:18:57 by oeddamou          #+#    #+#             */
-/*   Updated: 2025/01/29 18:18:58 by oeddamou         ###   ########.fr       */
+/*   Updated: 2025/02/02 19:11:06 by oeddamou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ int	ft_is_sorted(t_list *s_a, t_list *s_b);
 int ft_is_ascending(t_list *s);
 int ft_is_deascending(t_list *s);
 int ft_best(t_list *s_a);
+int ft_best2(t_list *s_a);
 int	ft_find(t_list *s_a, int n);
 
 #endif

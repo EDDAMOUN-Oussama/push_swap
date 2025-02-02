@@ -6,7 +6,7 @@
 /*   By: oeddamou <oeddamou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 09:57:48 by oeddamou          #+#    #+#             */
-/*   Updated: 2025/01/26 13:04:37 by oeddamou         ###   ########.fr       */
+/*   Updated: 2025/02/02 10:50:48 by oeddamou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 typedef struct s_list
 {
 	int				content;
+	int				index;
 	struct s_list	*next;
 }					t_list;
 
@@ -29,7 +30,7 @@ t_list				*ft_lstlast(t_list *lst);
 void				ft_lstadd_back(t_list **lst, t_list *new);
 void				ft_lstdelone(t_list *lst);
 void				ft_lstclear(t_list **lst);
-void				ft_lstiter(t_list *lst, void (*f)(int));
+void				ft_lstiter(t_list *lst, void (*f)(int *));
 t_list				*ft_lstmap(t_list *lst, int (*f)(int), void (*del)(int));
 size_t				ft_strlcat(char *dst, const char *src, size_t dstsize);
 size_t				ft_strlcpy(char *dst, const char *src, size_t dstsize);

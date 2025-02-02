@@ -6,7 +6,7 @@
 /*   By: oeddamou <oeddamou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 18:18:43 by oeddamou          #+#    #+#             */
-/*   Updated: 2025/01/29 18:19:45 by oeddamou         ###   ########.fr       */
+/*   Updated: 2025/02/02 20:40:01 by oeddamou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,24 @@ int ft_is_deascending(t_list *s)
 }
 
 int ft_best(t_list *s_a)
+{
+	t_list	*t;
+
+	t = s_a;
+	if (s_a)
+	{
+		t = s_a->next;
+		while(t)
+		{
+			if (s_a->content < t->content)
+				s_a = t;
+			t = t->next;
+		}
+	}
+	return (s_a->content);
+}
+
+int ft_best2(t_list *s_a)
 {
 	t_list	*t;
 
