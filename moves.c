@@ -6,7 +6,7 @@
 /*   By: oeddamou <oeddamou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 09:42:35 by oeddamou          #+#    #+#             */
-/*   Updated: 2025/01/29 10:49:49 by oeddamou         ###   ########.fr       */
+/*   Updated: 2025/02/03 17:48:56 by oeddamou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ void	ft_swap(t_list **stack)
 		(*stack) = next;
 	}
 }
+
 void	ft_push(t_list **stack1, t_list **stack2)
 {
 	t_list	*node;

@@ -6,7 +6,7 @@
 /*   By: oeddamou <oeddamou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/26 16:21:58 by oeddamou          #+#    #+#             */
-/*   Updated: 2025/01/29 13:39:28 by oeddamou         ###   ########.fr       */
+/*   Updated: 2025/02/03 15:22:00 by oeddamou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,7 @@ int	ft_is_non_valide(char *str)
 	int	i;
 	int	c;
 
-	i = 0;
-	c = 0;
+	i = ((c = 0), 0);
 	if (!str || !*str)
 		return (0);
 	while (str[i])
@@ -33,24 +32,26 @@ int	ft_is_non_valide(char *str)
 	while (str[i] && str[i + 1])
 	{
 		if (str[i] == '+' || str[i] == '-')
-			if (!ft_isdigit(str[i + 1]) || (i > 0 && str[i -1] != ' '))
+			if (!ft_isdigit(str[i + 1]) || (i > 0 && str[i - 1] != ' '))
 				return (0);
 		i++;
 	}
+	if (str[i] == '+' || str[i] == '-')
+		return (0);
 	return (1);
 }
 
 int	ft_zero(char *str, int j)
 {
-	int i;
+	int	i;
 
 	i = j;
-	while (i && str[i] != ' ' && str[i]!= '-' && str[i] != '+')
-		{
-			if (str[i] != '0')
-				return (0);
-			i--;
-		}
+	while (i && str[i] != ' ' && str[i] != '-' && str[i] != '+')
+	{
+		if (str[i] != '0')
+			return (0);
+		i--;
+	}
 	return (1);
 }
 
@@ -69,19 +70,18 @@ int	ft_check_arg(int ac, char **av)
 		while (av[i][j])
 		{
 			if ((!ft_isdigit(av[i][j]) && av[i][j] != '+' && av[i][j] != '-'
-					&& av[i][j] != ' ') || c == 10)
+					&& av[i][j] != ' ') || c > 10)
 				return (ft_putstr_fd("Error\n", 2), 0);
 			if (av[i][j] == ' ')
 				c = 0;
 			j++;
 			if (c != 0 || !ft_zero(av[i], j))
-			c++;
+				c++;
 		}
 		i++;
 	}
 	return (1);
 }
-
 
 t_list	*ft_to_lstnum(int ac, char **av)
 {
