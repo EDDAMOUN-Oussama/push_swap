@@ -6,7 +6,7 @@
 /*   By: oeddamou <oeddamou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/26 16:21:58 by oeddamou          #+#    #+#             */
-/*   Updated: 2025/02/03 15:22:00 by oeddamou         ###   ########.fr       */
+/*   Updated: 2025/02/04 11:33:15 by oeddamou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ int	ft_zero(char *str, int j)
 	}
 	return (1);
 }
-
+#include<stdio.h>
 int	ft_check_arg(int ac, char **av)
 {
 	int	i;
@@ -72,11 +72,11 @@ int	ft_check_arg(int ac, char **av)
 			if ((!ft_isdigit(av[i][j]) && av[i][j] != '+' && av[i][j] != '-'
 					&& av[i][j] != ' ') || c > 10)
 				return (ft_putstr_fd("Error\n", 2), 0);
-			if (av[i][j] == ' ')
+			if (av[i][j] == ' ' || av[i][j] == '+' || av[i][j] == '-')
 				c = 0;
-			j++;
 			if (c != 0 || !ft_zero(av[i], j))
 				c++;
+			j++;
 		}
 		i++;
 	}

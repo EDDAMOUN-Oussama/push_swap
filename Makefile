@@ -33,7 +33,7 @@ LIBFT_DIR = ./libft_push_swap
 LIBFT = $(LIBFT_DIR)/libft.a
 
 CC = cc
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror 
 
 all: $(NAME)
 
@@ -44,7 +44,7 @@ $(LIBFT):
 	$(MAKE) -C $(LIBFT_DIR)
 
 clean:
-	$(MAKE) -C $(LIBFT_DIR) clean
+	$(MAKE) -C $(LIBFT_DIR) fclean
 	rm -f $(OBJ)
 
 fclean: clean

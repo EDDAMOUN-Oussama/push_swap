@@ -6,7 +6,7 @@
 /*   By: oeddamou <oeddamou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/26 16:07:34 by oeddamou          #+#    #+#             */
-/*   Updated: 2025/02/03 21:03:31 by oeddamou         ###   ########.fr       */
+/*   Updated: 2025/02/04 20:54:01 by oeddamou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,25 @@
 // {
 // 	system("leaks push_swap");
 // }
+void	sort_small(t_list **s_a, t_list **s_b)
+{
+	int n;
+
+	n = ft_lstsize(*s_a);
+	while (!ft_is_sorted(*s_a, NULL))
+	{
+		if ((*s_a)->index > ft_lstlast(*s_a)->index)
+			ft_move(s_a, s_b, "rra");
+		else if ((*s_a)->index > ((*s_a)->next)->index)
+			ft_move(s_a, s_b, "sa");
+		else if (n > 3)
+		{
+			ft_move(s_a, s_b, "pb");
+		}
+		else 
+			ft_move(s_a, s_b, "rra");
+	}
+}
 
 void	ft_sort(t_list **s_a, t_list **s_b)
 {
@@ -29,9 +48,7 @@ void	ft_sort(t_list **s_a, t_list **s_b)
 	{
 		if ((*s_a)->index > ft_lstlast(*s_a)->index
 			&& ft_lstlast(*s_a)->index < max_rang)
-		{
 			ft_move(s_a, s_b, "rra");
-		}
 		else if ((*s_a)->index > max_rang)
 			ft_move(s_a, s_b, "ra");
 		else if ((*s_a)->index < min_rang)
@@ -87,12 +104,17 @@ void	ft_index(t_list **s_a)
 	}
 }
 
+// void	ll(void)
+// {
+// 	system("leaks push_swap");
+// }
+
 int	main(int ac, char **av)
 {
 	t_list	*stack_a;
 	t_list	*stack_b;
 
-	// atexit(check_leaks);
+	// atexit(ll);
 	if (!ft_check_arg(ac, av))
 		return (0);
 	stack_a = ft_to_lstnum(ac, av);
@@ -100,6 +122,8 @@ int	main(int ac, char **av)
 		return (ft_lstclear(&stack_a), 0);
 	ft_index(&stack_a);
 	stack_b = NULL;
+	if (ft_lstsize(stack_a) <= 5)
+		sort_small(&stack_a, &stack_b);
 	if (!ft_is_sorted(stack_a, stack_b))
 		ft_sort(&stack_a, &stack_b);
 	while (stack_b)
