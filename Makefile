@@ -4,14 +4,15 @@ MAN_DER = ./mandatory
 SRC = $(MAN_DER)/moves.c $(MAN_DER)/push_swap.c $(MAN_DER)/utils.c $(MAN_DER)/valide.c
 OBJ = $(SRC:.c=.o)
 
-LIBFT_DIR = ./libft_push_swap
-LIBFT = $(LIBFT_DIR)/libft.a
-
 CHECKER = checker
 CHE_DER = ./checker_bonus
+
 SRC_BONUS = $(CHE_DER)/moves_bonus.c $(CHE_DER)/checker_bonus.c \
 			 $(CHE_DER)/utils_bonus.c $(CHE_DER)/valide_bonus.c
 OBJ_BONUS = $(SRC_BONUS:.c=.o)
+
+LIBFT_DIR = ./libft_push_swap
+LIBFT = $(LIBFT_DIR)/libft.a
 
 %.o: %.c $(LIBFT_DIR)/libft.h $(CHE_DER)/checker_bonus.h
 	cc -Wall -Wextra -Werror -c $< -o $@

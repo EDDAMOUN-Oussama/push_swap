@@ -6,16 +6,12 @@
 /*   By: oeddamou <oeddamou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/26 16:07:34 by oeddamou          #+#    #+#             */
-/*   Updated: 2025/02/05 18:34:38 by oeddamou         ###   ########.fr       */
+/*   Updated: 2025/02/05 20:55:04 by oeddamou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-// void check_leaks()
-// {
-// 	system("leaks push_swap");
-// }
 void	sort_small(t_list **s_a, t_list **s_b)
 {
 	int	n;
@@ -57,7 +53,8 @@ void	ft_sort(t_list **s_a, t_list **s_b)
 	int	min_rang;
 	int	max_rang;
 
-	max_rang = ((min_rang = 0), ft_lstsize(*s_a) * 0.048 + 10);
+	min_rang = 0;
+	max_rang = ft_lstsize(*s_a) * 0.048 + 10;
 	while (*s_a && !ft_is_sorted(*s_a, *s_b))
 		if (ft_lstlast(*s_a)->index < max_rang && ft_compare(s_a, NULL, 'a'))
 			ft_move(s_a, s_b, "rra");
@@ -75,7 +72,8 @@ void	ft_sort(t_list **s_a, t_list **s_b)
 	else
 	{
 		ft_compare(s_a, s_b, 'b');
-		min_rang = ((max_rang++), min_rang + 1);
+		max_rang++;
+		min_rang++;
 	}
 }
 
