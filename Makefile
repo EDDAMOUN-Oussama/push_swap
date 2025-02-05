@@ -1,54 +1,38 @@
-# NAME = ./push_swap
-
-# SRC = moves.c push_swap.c utils.c valide.c
-
-# all: $(NAME)
-
-# $(NAME): $(SRC) push_swap.h libft
-# 	cc -Wall -Wextra -Wextra $(SRC) ./libft_push_swap/libft.a -o $(NAME)
-
-# libft: ./libft_push_swap
-# 	cd ./libft_push_swap
-# 	make
-# 	make clean
-# 	cd ..
-
-# clean:
-# 	cd ./libft_push_swap
-# 	make fclean
-# 	cd ..
-
-# fclean: clean
-# 	rm -f $(NAME)
-
-# re: fclean all
-
-
 NAME = push_swap
 
-SRC = moves.c push_swap.c utils.c valide.c
+MAN_DER = ./mandatory
+SRC = $(MAN_DER)/moves.c $(MAN_DER)/push_swap.c $(MAN_DER)/utils.c $(MAN_DER)/valide.c
 OBJ = $(SRC:.c=.o)
 
 LIBFT_DIR = ./libft_push_swap
 LIBFT = $(LIBFT_DIR)/libft.a
 
-CC = cc
-CFLAGS = -Wall -Wextra -Werror 
+CHECKER = checker
+CHE_DER = ./checker_bonus
+SRC_BONUS = $(CHE_DER)/moves_bonus.c $(CHE_DER)/checker_bonus.c \
+			 $(CHE_DER)/utils_bonus.c $(CHE_DER)/valide_bonus.c
+OBJ_BONUS = $(SRC_BONUS:.c=.o)
+
+%.o: %.c $(LIBFT_DIR)/libft.h $(CHE_DER)/checker_bonus.h
+	cc -Wall -Wextra -Werror -c $< -o $@
 
 all: $(NAME)
 
-$(NAME): $(OBJ) $(LIBFT)
-	$(CC) $(CFLAGS) $(OBJ) $(LIBFT) -o $(NAME)
+$(NAME): $(OBJ) $(LIBFT) $(MAN_DER)/push_swap.h
+	cc -Wall -Wextra -Werror $(OBJ) $(LIBFT) -o $(NAME)
 
 $(LIBFT):
-	$(MAKE) -C $(LIBFT_DIR)
+	make -C $(LIBFT_DIR)
+
+bonus: $(OBJ_BONUS) $(LIBFT) 
+	cc -Wall -Wextra -Werror $(OBJ_BONUS) $(LIBFT) -o $(CHECKER)
 
 clean:
-	$(MAKE) -C $(LIBFT_DIR) fclean
-	rm -f $(OBJ)
+	make -C $(LIBFT_DIR) fclean
+	rm -f $(OBJ) $(OBJ_BONUS)
 
 fclean: clean
-	$(MAKE) -C $(LIBFT_DIR) fclean
-	rm -f $(NAME)
+	make -C $(LIBFT_DIR) fclean
+	rm -f $(NAME) $(CHECKER)
 
 re: fclean all

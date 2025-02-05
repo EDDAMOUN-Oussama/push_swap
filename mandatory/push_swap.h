@@ -6,14 +6,14 @@
 /*   By: oeddamou <oeddamou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 18:18:57 by oeddamou          #+#    #+#             */
-/*   Updated: 2025/02/03 17:04:18 by oeddamou         ###   ########.fr       */
+/*   Updated: 2025/02/05 11:18:30 by oeddamou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
-# include "libft_push_swap/libft.h"
+# include "../libft_push_swap/libft.h"
 
 int		ft_is_non_valide(char *str);
 int		ft_check_arg(int ac, char **av);
@@ -28,5 +28,6 @@ void	ft_move(t_list **stack1, t_list **stack2, char *move);
 int		ft_is_sorted(t_list *s_a, t_list *s_b);
 int		ft_best(t_list *s_a);
 int		ft_find(t_list *s_a, int n);
+void	ft_index(t_list **s_a);
 
 #endif

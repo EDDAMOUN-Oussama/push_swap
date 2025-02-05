@@ -6,13 +6,11 @@
 /*   By: oeddamou <oeddamou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/26 16:07:34 by oeddamou          #+#    #+#             */
-/*   Updated: 2025/02/04 20:54:01 by oeddamou         ###   ########.fr       */
+/*   Updated: 2025/02/05 18:34:38 by oeddamou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-#include <math.h>
-#include <stdio.h>
 
 // void check_leaks()
 // {
@@ -20,7 +18,7 @@
 // }
 void	sort_small(t_list **s_a, t_list **s_b)
 {
-	int n;
+	int	n;
 
 	n = ft_lstsize(*s_a);
 	while (!ft_is_sorted(*s_a, NULL))
@@ -33,9 +31,25 @@ void	sort_small(t_list **s_a, t_list **s_b)
 		{
 			ft_move(s_a, s_b, "pb");
 		}
-		else 
+		else
 			ft_move(s_a, s_b, "rra");
 	}
+}
+
+int	ft_compare(t_list **s_a, t_list **s_b, char c)
+{
+	if (c == 'a' && ft_lstsize(*s_a) > 1
+		&& (*s_a)->index > ft_lstlast(*s_a)->index)
+		return (1);
+	if (c == 'b')
+	{
+		if (ft_compare(s_a, NULL, 'a'))
+			ft_move(s_a, s_b, "rra");
+		ft_move(s_a, s_b, "pb");
+		if (ft_lstsize(*s_b) > 1 && ((*s_b)->index < ((*s_b)->next)->index))
+			ft_move(s_a, s_b, "sb");
+	}
+	return (0);
 }
 
 void	ft_sort(t_list **s_a, t_list **s_b)
@@ -45,76 +59,31 @@ void	ft_sort(t_list **s_a, t_list **s_b)
 
 	max_rang = ((min_rang = 0), ft_lstsize(*s_a) * 0.048 + 10);
 	while (*s_a && !ft_is_sorted(*s_a, *s_b))
-	{
-		if ((*s_a)->index > ft_lstlast(*s_a)->index
-			&& ft_lstlast(*s_a)->index < max_rang)
+		if (ft_lstlast(*s_a)->index < max_rang && ft_compare(s_a, NULL, 'a'))
 			ft_move(s_a, s_b, "rra");
-		else if ((*s_a)->index > max_rang)
-			ft_move(s_a, s_b, "ra");
-		else if ((*s_a)->index < min_rang)
-		{
-			ft_move(s_a, s_b, "pb");
-			if ((*s_a)->index > max_rang)
-				ft_move(s_a, s_b, "rr");
-			else
-				ft_move(s_a, s_b, "rb");
-			min_rang++;
-			max_rang++;
-		}
-		else
-		{
-			if (ft_lstsize(*s_a) > 1
-				&& (ft_lstlast(*s_a)->index < (*s_a)->index))
-				ft_move(s_a, s_b, "rra");
-			ft_move(s_a, s_b, "pb");
-			if (ft_lstsize(*s_b) > 1 && ((*s_b)->index < ((*s_b)->next)->index))
-				ft_move(s_a, s_b, "sb");
-			min_rang++;
-			max_rang++;
-		}
-	}
-}
-
-void	ft_index(t_list **s_a)
-{
-	t_list	*tmp1;
-	int		i;
-	int		min;
-
-	if (!s_a || !*s_a)
-		return ;
-	i = 0;
-	tmp1 = *s_a;
-	while (tmp1)
-		tmp1 = ((tmp1->index = -1), tmp1->next);
-	while (i < ft_lstsize(*s_a))
+	else if ((*s_a)->index > max_rang)
+		ft_move(s_a, s_b, "ra");
+	else if ((*s_a)->index < min_rang)
 	{
-		min = ft_best(*s_a);
-		tmp1 = (*s_a);
-		while (tmp1)
-		{
-			if (min > tmp1->content && tmp1->index == -1)
-				min = tmp1->content;
-			tmp1 = tmp1->next;
-		}
-		tmp1 = *s_a;
-		while (tmp1->content != min)
-			tmp1 = tmp1->next;
-		tmp1->index = i++;
+		ft_move(s_a, s_b, "pb");
+		if ((*s_a)->index > max_rang)
+			ft_move(s_a, s_b, "rr");
+		else
+			ft_move(s_a, s_b, "rb");
+		min_rang = ((max_rang++), min_rang + 1);
+	}
+	else
+	{
+		ft_compare(s_a, s_b, 'b');
+		min_rang = ((max_rang++), min_rang + 1);
 	}
 }
-
-// void	ll(void)
-// {
-// 	system("leaks push_swap");
-// }
 
 int	main(int ac, char **av)
 {
 	t_list	*stack_a;
 	t_list	*stack_b;
 
-	// atexit(ll);
 	if (!ft_check_arg(ac, av))
 		return (0);
 	stack_a = ft_to_lstnum(ac, av);

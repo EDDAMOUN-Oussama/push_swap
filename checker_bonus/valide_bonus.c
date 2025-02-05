@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   valide.c                                           :+:      :+:    :+:   */
+/*   valide_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: oeddamou <oeddamou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/26 16:21:58 by oeddamou          #+#    #+#             */
-/*   Updated: 2025/02/04 11:33:15 by oeddamou         ###   ########.fr       */
+/*   Updated: 2025/02/05 10:58:35 by oeddamou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "checker_bonus.h"
 
 int	ft_is_non_valide(char *str)
 {
@@ -54,7 +54,7 @@ int	ft_zero(char *str, int j)
 	}
 	return (1);
 }
-#include<stdio.h>
+
 int	ft_check_arg(int ac, char **av)
 {
 	int	i;
