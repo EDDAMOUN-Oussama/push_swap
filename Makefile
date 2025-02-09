@@ -24,9 +24,17 @@ $(NAME): $(OBJ) $(LIBFT) $(MAN_DER)/push_swap.h
 
 $(LIBFT):
 	make -C $(LIBFT_DIR)
+################################################################
+#***********relink:
+# bonus: $(OBJ_BONUS) $(LIBFT) 
+# 	cc -Wall -Wextra -Werror $(OBJ_BONUS) $(LIBFT) -o $(CHECKER)
 
-bonus: $(OBJ_BONUS) $(LIBFT) 
+#**********No relink:
+bonus: $(CHECKER)
+
+$(CHECKER): $(OBJ_BONUS) $(LIBFT) 
 	cc -Wall -Wextra -Werror $(OBJ_BONUS) $(LIBFT) -o $(CHECKER)
+################################################################
 
 clean:
 	make -C $(LIBFT_DIR) fclean
